@@ -1,1 +1,1 @@
-This program is an encryption tool made in C. It will take the name of a file as input, and output a file containing the encrypted message. 
+This program is an encryption tool made in C. The program will take the name of a file as input, and output a file containing the encrypted message. 

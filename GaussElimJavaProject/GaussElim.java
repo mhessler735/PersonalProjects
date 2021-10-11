@@ -3,12 +3,40 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class GaussElim {
-    public static void main(String[] args) throws FileNotFoundException {
-        Scanner sc = new Scanner(System.in);
+/**
+ * Michael Hessler
+ * CS 3010.02
+ * 10/8/2021
+ * Programming Project #1
+ *
+ * This program that will ask the user for the number of linear equations to solve
+ *  using the the Gaussian elimination with Scaled Partial Pivoting method.
+ * The user can choose to read the coefficients of the linear equations from a file
+ * or enter them manually. They will also enter the b values for each equation.
+ * The program will output the scaled ratios, the pivot row, and the intermediate matrix '
+ * at each step. Then it will output the solutions to the linear equations
+*/
 
-        System.out.print("Number of linear Equations to Solve: ");
-        int row = sc.nextInt();
+public class GaussElim {
+
+    /**
+     * This is the main function that asks for user input and then runs the functions for
+     * Gaussian Elimination
+     * @param args none
+     * @throws FileNotFoundException
+     */
+    public static void main(String[] args) throws FileNotFoundException {
+        int row = 0;
+        do {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Number of linear Equations to Solve: ");
+            row = sc.nextInt();
+
+            if (row < 0 || row > 10)
+                System.out.println("Pick a number from 0-10");
+
+        } while (row > 10 || row < 0);
+
         int col = row + 1;
         float[][] matrix = new float[0][0];
 
@@ -19,14 +47,13 @@ public class GaussElim {
 
         boolean invalidInput = false;
         do {
-            int choice = sc.nextInt();
+            Scanner scan = new Scanner(System.in);
+            String choice = scan.nextLine();
 
-            if (choice == 1) {
+            if (choice.equals("1")) {
                 matrix = enterCoef(row, col);
-                invalidInput = false;
-            } else if (choice == 2) {
+            } else if (choice.equals("2")) {
                 matrix = readFromFile(row, col);
-                invalidInput = false;
             } else {
                 invalidInput = true;
                 System.out.print("Invalid Menu Option. \nSelect Option: ");
@@ -34,57 +61,47 @@ public class GaussElim {
 
         } while (invalidInput);
 
-        displayMatrix(matrix, row, col);
-        //getBvalues(matrix, row, col);
-        gaussElim(matrix, row, col);
+        displayMatrix(matrix);
+        gaussElimination(matrix, row, col);
         backSub(matrix, row, col);
 
-
-       /* int start = 0;
-        float [] maxVal = findMaxVal(matrix, start,  row,  col);
-        int pivotRow = findPivotRow(matrix,start, row, maxVal);
-        System.out.println(Arrays.toString(maxVal));
-        System.out.println(pivotRow);
-
-        swapRows(matrix,pivotRow, start, col);
-        for(float[] rowVals: matrix) {
-            System.out.println(Arrays.toString(rowVals));
-        }
-
-        gaussElim(matrix, row, col);
-        displayMatrix(sol, row, col); */
     }
-    private static void getBvalues(float [][] matrix, int row, int col) {
-        float b[] = new float[row];
-        for (int i = 0; i < row; i++) {
-            b[i] = matrix[i][col-1];
 
-        }
-        System.out.print(Arrays.toString(b) + " ");
-    }
-    private static void gaussElim(float[][] matrix, int row, int col) {
-        float multiplier;
+    /**
+     * This function solves the system of linear equations using the steps
+     * in gaussian elimination. This is where the intermediate matrices are printed.
+     * @param matrix
+     * @param row
+     * @param col
+     */
+    private static void gaussElimination(float[][] matrix, int row, int col) {
+        float mult;
         int pivotRow;
-        for (int start = 0; start < row - 1; start++) {
-            float[] maxVal = findMaxVal(matrix, start, row, col);
+        for (int p = 0; p < row - 1; p++) {
+            float[] maxVal = findMaxVal(matrix, p, row, col);
 
-            pivotRow = findPivotRow(matrix, start, row, maxVal);
-            swapRows(matrix, pivotRow, start, col);
+            pivotRow = findPivotRow(matrix, p, row, maxVal);
+            System.out.println("\nPivot Row: " + (pivotRow + 1));
+            swapRows(matrix, pivotRow, p, col);
 
-            for (int i = start +1; i < row; i++) {
-                multiplier = matrix[i][start] / matrix[start][start];
-                matrix[i][col-1] -= (multiplier * matrix[start][col-1]);
-                for (int j = start; j < row; j++) {
-                    matrix[i][j] -= (multiplier * matrix[start][j]);
+            for (int i = p +1; i < row; i++) {
+                mult = matrix[i][p] / matrix[p][p];
+                matrix[i][col-1] -= (mult * matrix[p][col-1]);
+                for (int j = p; j < row; j++) {
+                    matrix[i][j] -= (mult * matrix[p][j]);
                 }
             }
-
-            for (float[] rowVals : matrix) {
-                System.out.println(Arrays.toString(rowVals));
-            }
-            System.out.println();
+            displayMatrix(matrix);
         }
+            System.out.println();
     }
+
+    /**
+     * This is where backsubstitution happens and the solutions for the linear equations is found
+     * @param matrix
+     * @param row
+     * @param col
+     */
     public static void backSub(float[][] matrix, int row, int col){
         float total;
         float [] sol = new float[row];
@@ -94,44 +111,73 @@ public class GaussElim {
                 total+= matrix[i][j] * sol[j];
             }
             sol[i] = (matrix[i][col-1] - total) / matrix[i][i];
-            System.out.println("x" + (i+1) + " = " + sol[i]);
+            System.out.println("x" + (i+1) + " = " + (Math.round(sol[i])));
         }
-
     }
 
-    private static float[] findMaxVal(float[][] matrix, int start, int row, int col) {
+    /**
+     * This is used to find the largest value of each row to determine the pivot row.
+     * @param matrix
+     * @param p
+     * @param row
+     * @param col
+     * @return maxVal - the maximum values at each ro
+     */
+    private static float[] findMaxVal(float[][] matrix, int p, int row, int col) {
         float maxVal [] = new float[row];
-        for(int i = start; i < row; i++) {
-            for(int j = start; j < col -1; j++) {
+        for(int i = p; i < row; i++) {
+            for(int j = p; j < col -1; j++) {
                 maxVal[i] = (Math.abs(matrix[i][j]) > Math.abs(maxVal[i])) ? Math.abs(matrix[i][j]) : maxVal[i];
             }
         }
         return maxVal;
     }
 
-    private static int findPivotRow (float[][] matrix, int start, int row, float [] maxVal) {
-        int pivotRow = start;
-        for (int i = start; i < row; i++) {
-            pivotRow = (matrix[i][start] / maxVal[i] > matrix[pivotRow][start] / maxVal[pivotRow]) ? i : pivotRow;
+    /**
+     * This function finds the row that is going to be the next pivot equation
+     * @param matrix
+     * @param p
+     * @param row
+     * @param maxVal
+     * @return pivotRow- this the row value that was select based on the scaled ratio to pivot the matrix.
+     */
+    private static int findPivotRow (float[][] matrix, int p, int row, float [] maxVal) {
+        int pivotRow = p;
+        System.out.print("Scaled Ratios: ");
+        for (int i = p; i < row; i++) {
+            System.out.print(Math.abs(matrix[i][p]) + "/" + Math.abs(maxVal[i]) + ", ");
+            pivotRow = (Math.abs(matrix[i][p] / maxVal[i]) > Math.abs(matrix[pivotRow][p] / maxVal[pivotRow])) ? i : pivotRow;
         }
         return pivotRow;
     }
 
-    private static void swapRows(float[][] matrix, int pivotRow, int start, int col) {
+    /**
+     * This function swaps the rows based on the selected pivot row
+     * @param matrix
+     * @param pivotRow
+     * @param p
+     * @param col
+     */
+    private static void swapRows(float[][] matrix, int pivotRow, int p, int col) {
         float temp;
-        for(int i = start; i < col; i++) {
-            temp = matrix[start][i];
-            matrix[start][i] = matrix[pivotRow][i];
+        for(int i = p; i < col; i++) {
+            temp = matrix[p][i];
+            matrix[p][i] = matrix[pivotRow][i];
             matrix[pivotRow][i] = temp;
         }
     }
 
+    /**
+     * This function allos the user to enter the coefficients and b values for their linear equations
+     * @param row
+     * @param col
+     * @return matrix
+     */
     public static float[][] enterCoef(int row, int col) {
         Scanner sc = new Scanner(System.in);
         float matrix[][] = new float[row][col];
 
-        // Read the matrix values
-        System.out.println("Enter the coefficients of the linear equations with the last element being b" +
+        System.out.println("Enter the coefficients of the linear equations with the last element being the b value.\n" +
                             "Separate the values with spaces: ");
 
         for (int i = 0; i < row; i++) {
@@ -139,9 +185,17 @@ public class GaussElim {
                 matrix[i][j] = sc.nextFloat();
             }
         }
+
         return matrix;
     }
 
+    /**
+     * This function reads the matrix from the file given by the user and stores it in matrix[][]
+     * @param row
+     * @param col
+     * @return matrix
+     * @throws FileNotFoundException
+     */
     public static float[][] readFromFile(int row, int col) throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);
 
@@ -160,10 +214,15 @@ public class GaussElim {
                 }
             }
         }
+
         return matrix;
     }
 
-    public static void displayMatrix(float [][] matrix, int row, int col) {
+    /**
+     * This function displays the matrix using the Arrays class
+     * @param matrix
+     */
+    public static void displayMatrix(float [][] matrix) {
         System.out.println("Elements of the matrix are");
         for(float[] rowVals: matrix) {
             System.out.println(Arrays.toString(rowVals));

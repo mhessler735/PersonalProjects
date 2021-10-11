@@ -1,0 +1,1 @@
+This is a program to find the solution to a system of equations using Gaussian Elimination with scaled partial pivoting

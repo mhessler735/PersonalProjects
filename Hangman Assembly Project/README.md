@@ -1,1 +1,0 @@
-This program is a Hangman game coded in MIPS Assembly Language.

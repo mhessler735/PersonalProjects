@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4daed3;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.loginform.Inventory">
+   <center>
+      <AnchorPane prefHeight="398.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="159.0" fitWidth="254.0" layoutX="5.0" layoutY="130.0">
+               <image>
+                  <Image url="@../../../images/inventory-management.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="301.0" layoutY="76.0" prefHeight="32.0" prefWidth="51.0" text="UPC:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="itemUPC" layoutX="387.0" layoutY="75.0" onAction="#onEnter" prefHeight="34.0" prefWidth="175.0" promptText="Item UPC" />
+            <Label layoutX="276.0" layoutY="134.0" prefHeight="26.0" prefWidth="89.0" text="Product Name:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label layoutX="274.0" layoutY="176.0" prefHeight="23.0" prefWidth="111.0" text="Inventory Status:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label layoutX="274.0" layoutY="221.0" prefHeight="12.0" prefWidth="80.0" text="Quantity:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="productNameLabel" layoutX="388.0" layoutY="138.0" prefHeight="19.0" prefWidth="153.0" textFill="WHITE" />
+            <Label fx:id="inventoryStatusLabel" layoutX="391.0" layoutY="179.0" prefHeight="18.0" prefWidth="81.0" textFill="WHITE" />
+            <Label fx:id="quantityLabel" layoutX="391.0" layoutY="220.0" prefHeight="18.0" prefWidth="81.0" textFill="WHITE" />
+            <TextField fx:id="changeQuantity" layoutX="398.0" layoutY="267.0" onAction="#onEnter1" promptText="Item Quantity" />
+            <Label layoutX="273.0" layoutY="268.0" prefHeight="22.0" prefWidth="100.0" text="Modify Quantity:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button fx:id="menuRetrun" layoutX="76.0" layoutY="321.0" mnemonicParsing="false" onAction="#returnToMenu" prefHeight="30.0" prefWidth="112.0" text="Return to Menu" textFill="#434343" />
+            <Label fx:id="itemNotFoundlabel" layoutX="391.0" layoutY="116.0" prefHeight="17.0" prefWidth="155.0" textFill="#ee0202" />
+            <Label fx:id="invalidFormat" layoutX="395.0" layoutY="305.0" prefHeight="17.0" prefWidth="155.0" textFill="#ee0202" />
+            <Label layoutX="326.0" layoutY="326.0" prefHeight="21.0" prefWidth="148.0" text="Last Modified in Session:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Label>
+            <Label fx:id="lastUpdatedBy" layoutX="465.0" layoutY="326.0" prefHeight="22.0" prefWidth="100.0" textFill="WHITE" />
+            <Separator layoutX="276.0" layoutY="166.0" prefHeight="3.0" prefWidth="289.0" />
+            <Separator layoutX="276.0" layoutY="207.0" prefHeight="3.0" prefWidth="289.0" />
+            <Separator layoutX="276.0" layoutY="245.0" prefHeight="7.0" prefWidth="291.0" />
+            <Separator layoutX="273.0" layoutY="298.0" prefHeight="7.0" prefWidth="291.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/i_are_spaceship.png" type="Texture" id=1]
+[ext_resource path="res://Variant/Laser2/Laser2.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.47888, 14.0936 )
+
+[node name="Laser2" type="RigidBody2D" groups=[
+"laser",
+]]
+position = Vector2( 491.194, 284.336 )
+collision_layer = 2
+collision_mask = 4
+gravity_scale = 0.0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -16.7232, -76.9233 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -19.5, 1.5 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, -20 )
+hframes = 12
+vframes = 8
+frame = 30
+
+[node name="Area2D" type="Area2D" parent="." groups=[
+"laser",
+]]
+position = Vector2( 0.0487678, 0.501897 )
+collision_layer = 16
+collision_mask = 1056
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( -20, -78.4163 )
+polygon = PoolVector2Array( -3.31744, -13.171, 9.66101, -13.171, 9.79459, 15.988, -3.19849, 15.988 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

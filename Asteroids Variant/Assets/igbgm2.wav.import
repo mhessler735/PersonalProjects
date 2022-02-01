@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/igbgm2.wav-70861d2a0cb0f3799c9c9069b39f1227.sample"
+
+[deps]
+
+source_file="res://Assets/igbgm2.wav"
+dest_files=[ "res://.import/igbgm2.wav-70861d2a0cb0f3799c9c9069b39f1227.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

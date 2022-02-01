@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Assets/spaceships.png" type="Texture" id=2]
+[ext_resource path="res://Enemy/EnemyPaths.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/enemy_laser.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/enemy_died.wav" type="AudioStream" id=5]
+
+[node name="Enemy" type="RigidBody2D" groups=[
+"enemy",
+]]
+position = Vector2( -6.35449, 2.39914 )
+collision_layer = 8
+collision_mask = 33
+gravity_scale = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="EnemyPaths" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 1.49727, -0.3585 )
+polygon = PoolVector2Array( -35.5027, -5.35852, -23.5027, -8.35852, -9.50273, -21.3585, 5.49727, -22.3585, 16.4973, -13.3585, 33.4973, -6.35852, 34.4973, -3.35852, 24.4973, 0.641479, 19.4973, 5.64148, 25.4973, 12.6415, 24.4973, 14.6415, 24.4973, 15.6415, 13.4973, 9.64148, 2.49727, 13.6415, 1.49727, 21.6415, -1.50273, 24.6415, -5.50273, 11.6415, -15.5027, 9.64148, -24.5027, 15.6415, -27.5027, 13.6415, -20.5027, 5.64148, -25.5027, -0.358521, -34.5027, -1.35852 )
+
+[node name="Hitbox" type="Area2D" parent="." groups=[
+"enemy",
+]]
+position = Vector2( -1.50273, 6.6415 )
+collision_layer = 64
+collision_mask = 24
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2( 1.49727, -0.3585 )
+polygon = PoolVector2Array( -35.5027, -5.35852, -23.5027, -8.35852, -9.50273, -21.3585, 5.49727, -22.3585, 16.4973, -13.3585, 33.4973, -6.35852, 34.4973, -3.35852, 24.4973, 0.641479, 19.4973, 5.64148, 25.4973, 12.6415, 24.4973, 15.6415, 14.4973, 9.64148, 2.49727, 13.6415, 1.49727, 21.6415, -1.50273, 24.6415, -5.50273, 11.6415, -15.5027, 9.64148, -24.5027, 15.6415, -27.5027, 13.6415, -20.5027, 5.64148, -25.5027, -0.358521, -34.5027, -1.35852 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="PulseTimer" type="Timer" parent="."]
+
+[node name="Enemy Shooting Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+
+[node name="Enemy died" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

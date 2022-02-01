@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ShipExplosion.wav-d18373e308adeea4107f7af2069ac4ae.sample"
+
+[deps]
+
+source_file="res://Assets/ShipExplosion.wav"
+dest_files=[ "res://.import/ShipExplosion.wav-d18373e308adeea4107f7af2069ac4ae.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

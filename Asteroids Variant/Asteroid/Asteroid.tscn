@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/i_are_spaceship.png" type="Texture" id=1]
+[ext_resource path="res://Asteroid/Asteroid.gd" type="Script" id=2]
+
+[node name="Asteroid" type="RigidBody2D" groups=[
+"asteroids",
+]]
+position = Vector2( 544.564, 284.996 )
+collision_layer = 4
+collision_mask = 5
+mass = 2.0
+gravity_scale = 0.0
+linear_velocity = Vector2( 200, 0 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -7.96413, -24.1591, 7.75034, -24.0188, 15.7479, -20.0902, 23.8857, -11.812, 27.8144, -3.53384, 27.9547, 16.1092, 23.8857, 20.1782, 15.8882, 23.9665, 8.03096, 28.0354, -3.8952, 28.1757, -11.8927, 23.9665, -15.9617, 20.1782, -28.0281, 12.1806, -32.0971, 7.97139, -31.9568, -0.166454, -27.8878, -7.88338, -23.8189, -11.812, -15.8214, -19.8095 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+hframes = 4
+vframes = 4
+frame = 2
+
+[node name="Area2D" type="Area2D" parent="." groups=[
+"asteroids",
+]]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -8.04456, -24.3442, 7.97351, -24.2607, 15.8991, -20.0059, 23.8248, -11.9969, 27.9961, -3.82101, 28.163, 16.0348, 23.9916, 20.0393, 8.14038, 28.0483, -4.12347, 28.1317, -11.8823, 23.8769, -16.0536, 20.2896, -28.1506, 12.1971, -32.0717, 8.10913, -31.9883, -0.0667725, -27.9838, -7.82553, -23.8124, -12.2472, -15.9702, -19.9225 )

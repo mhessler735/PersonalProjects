@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/fighter.png" type="Texture" id=1]
+[ext_resource path="res://Variant/Player2/Player2.gd" type="Script" id=2]
+[ext_resource path="res://Assets/laser2.wav" type="AudioStream" id=3]
+
+[node name="Player2" type="RigidBody2D"]
+position = Vector2( 512, 300 )
+z_index = 5
+gravity_scale = 0.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+laser_speed = 400.0
+recharge_time = 0.2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0.772522, -97.3365 )
+scale = Vector2( 3.79627, 3.96057 )
+polygon = PoolVector2Array( -0.777786, -6.8003, -0.382217, -6.84243, 3.61745, -3.34572, 6.86992, -0.733719, 6.86992, -0.186039, 5.41949, 0.993572, -0.294312, 6.17544, -0.68988, 6.21757, -6.44763, 0.993572, -7.89807, -0.0596542, -7.94202, -0.775845, -4.64558, -3.34572 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -21.6072, -85.7273 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 1 )
+offset = Vector2( 27, -20 )
+region_enabled = true
+region_rect = Rect2( -13, -9, 93, 81 )
+
+[node name="ShootingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0

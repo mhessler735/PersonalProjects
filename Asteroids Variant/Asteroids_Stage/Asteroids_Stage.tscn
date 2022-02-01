@@ -1,0 +1,197 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Asteroids_Level/Asteroids_Level.gd" type="Script" id=2]
+[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/starfield.png" type="Texture" id=4]
+[ext_resource path="res://Menu/GameOverControl.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/ARCADE_N.TTF" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/ARCADE.TTF" type="DynamicFontData" id=7]
+[ext_resource path="res://Menu/GameOverControl.gd" type="Script" id=8]
+[ext_resource path="res://Assets/igbgm.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/gameoverbgm.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/defeat.wav" type="AudioStream" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.513726, 0.54902, 0.737255, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_color = Color( 0.52549, 0.576471, 0.678431, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.152941, 0.156863, 0.239216, 0.6 )
+shadow_size = 5
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 5
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.407843, 0.45098, 0.54902, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.247059, 0.313726, 0.490196, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.0745098, 0.0862745, 0.270588, 0.6 )
+shadow_size = 5
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
+
+[node name="Asteroids_Stage" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 513, 310 )
+scale = Vector2( 1.3225, 1.06667 )
+texture = ExtResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 460.624, 298.091 )
+collision_mask = 4
+linear_damp = 0.0
+angular_damp = 0.0
+
+[node name="Asteroids_Level" type="Node2D" parent="."]
+scale = Vector2( 0.712454, 1.33394 )
+script = ExtResource( 2 )
+
+[node name="EnemyTimer" type="Timer" parent="Asteroids_Level"]
+wait_time = 10.0
+autostart = true
+
+[node name="Asteroids" type="Node" parent="Asteroids_Level"]
+
+[node name="GameOverBGM" type="AudioStreamPlayer" parent="Asteroids_Level"]
+stream = ExtResource( 10 )
+volume_db = -20.0
+
+[node name="DefeatSound" type="AudioStreamPlayer" parent="Asteroids_Level"]
+stream = ExtResource( 11 )
+volume_db = -20.0
+
+[node name="UI" parent="." instance=ExtResource( 3 )]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+margin_left = 183.0
+margin_top = 155.0
+margin_right = 885.0
+margin_bottom = 257.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.901961, 0.0509804, 0.0509804, 1 )
+text = "GAME OVER"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverControl" parent="GameOverLabel" instance=ExtResource( 5 )]
+anchor_left = 0.151
+anchor_top = 1.255
+anchor_right = 0.151
+anchor_bottom = 1.255
+margin_left = -0.00200653
+margin_top = -0.0100098
+margin_right = 443.998
+margin_bottom = 267.99
+script = ExtResource( 8 )
+
+[node name="Replay" type="Button" parent="GameOverLabel/GameOverControl"]
+margin_left = 125.0
+margin_top = 25.0
+margin_right = 305.0
+margin_bottom = 65.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.909804, 0.917647, 0.776471, 1 )
+text = "REPLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Button" parent="GameOverLabel/GameOverControl"]
+margin_left = 125.0
+margin_top = 85.0
+margin_right = 305.0
+margin_bottom = 125.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.909804, 0.917647, 0.776471, 1 )
+text = "MENU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="GameOverLabel/GameOverControl"]
+margin_left = 125.0
+margin_top = 145.0
+margin_right = 305.0
+margin_bottom = 185.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.909804, 0.917647, 0.776471, 1 )
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverTimer" type="Timer" parent="."]
+
+[node name="Game1BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -20.0
+autoplay = true
+
+[connection signal="timeout" from="Asteroids_Level/EnemyTimer" to="Asteroids_Level" method="_on_EnemyTimer_timeout"]
+[connection signal="finished" from="Asteroids_Level/DefeatSound" to="Asteroids_Level" method="_on_DefeatSound_finished"]
+[connection signal="timeout" from="Timer" to="Asteroids_Level" method="_on_Timer_timeout"]
+[connection signal="pressed" from="GameOverLabel/GameOverControl/Replay" to="GameOverLabel/GameOverControl" method="_on_Replay_pressed"]
+[connection signal="pressed" from="GameOverLabel/GameOverControl/Menu" to="GameOverLabel/GameOverControl" method="_on_Menu_pressed"]
+[connection signal="pressed" from="GameOverLabel/GameOverControl/Quit" to="GameOverLabel/GameOverControl" method="_on_Quit_pressed"]
+[connection signal="timeout" from="GameOverTimer" to="Asteroids_Level" method="_on_GameOverTimer_timeout"]

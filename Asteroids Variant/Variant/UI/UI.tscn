@@ -1,0 +1,182 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Variant/UI/HealthBar.tres" type="Theme" id=1]
+[ext_resource path="res://Variant/UI/VariantUI.gd" type="Script" id=2]
+[ext_resource path="res://Variant/UI/VariantScore.gd" type="Script" id=3]
+[ext_resource path="res://Assets/ARCADE_N.TTF" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.027451, 0.372549, 0.160784, 1 )
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.027451, 0.372549, 0.160784, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.027451, 0.372549, 0.160784, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.027451, 0.372549, 0.160784, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.027451, 0.372549, 0.160784, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.705882, 0.14902, 0.14902, 1 )
+
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.793701
+margin_bottom = -0.793701
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VariantScore" type="Label" parent="."]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 642.0
+margin_bottom = 40.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.94902, 0.933333, 0.701961, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wall 1" type="ProgressBar" parent="."]
+margin_left = 191.883
+margin_top = 526.39
+margin_right = 291.883
+margin_bottom = 542.39
+theme = ExtResource( 1 )
+custom_styles/fg = SubResource( 5 )
+max_value = 3.0
+value = 3.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 216.912
+margin_top = 528.558
+margin_right = 267.912
+margin_bottom = 542.558
+theme = SubResource( 2 )
+text = "Shield 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wall 2" type="ProgressBar" parent="."]
+margin_left = 408.0
+margin_top = 524.405
+margin_right = 508.0
+margin_bottom = 540.405
+theme = ExtResource( 1 )
+custom_styles/fg = SubResource( 6 )
+max_value = 3.0
+value = 3.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wall 3" type="ProgressBar" parent="."]
+margin_left = 612.0
+margin_top = 525.0
+margin_right = 712.0
+margin_bottom = 541.0
+theme = ExtResource( 1 )
+custom_styles/fg = SubResource( 7 )
+max_value = 3.0
+value = 3.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wall 4" type="ProgressBar" parent="."]
+margin_left = 816.0
+margin_top = 525.0
+margin_right = 916.0
+margin_bottom = 541.0
+theme = ExtResource( 1 )
+custom_styles/fg = SubResource( 8 )
+max_value = 3.0
+value = 3.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Station" type="ProgressBar" parent="."]
+margin_left = 13.4983
+margin_top = 575.471
+margin_right = 1013.5
+margin_bottom = 591.471
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.568627, 0.4, 0.4, 1 )
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+max_value = 5.0
+value = 5.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 436.477
+margin_top = 527.35
+margin_right = 487.477
+margin_bottom = 541.35
+theme = SubResource( 2 )
+text = "Shield 2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 639.24
+margin_top = 526.784
+margin_right = 690.24
+margin_bottom = 540.784
+theme = SubResource( 2 )
+text = "Shield 3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 844.113
+margin_top = 526.693
+margin_right = 895.113
+margin_bottom = 540.693
+theme = SubResource( 2 )
+text = "Shield 4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="."]
+margin_left = 506.812
+margin_top = 577.28
+margin_right = 557.812
+margin_bottom = 591.28
+theme = SubResource( 2 )
+text = "Base"
+__meta__ = {
+"_edit_use_anchors_": false
+}

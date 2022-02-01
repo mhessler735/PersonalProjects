@@ -1,0 +1,142 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Shipyard wall.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Centrifugal Station 2nd generation hull.png" type="Texture" id=2]
+[ext_resource path="res://Variant/Shield_1.gd" type="Script" id=3]
+[ext_resource path="res://Variant/Shield_4.gd" type="Script" id=4]
+[ext_resource path="res://Variant/Shield_2.gd" type="Script" id=5]
+[ext_resource path="res://Variant/Shield_3.gd" type="Script" id=6]
+[ext_resource path="res://Variant/Space_Station.gd" type="Script" id=7]
+[ext_resource path="res://Variant/Shield Walls.gd" type="Script" id=8]
+
+[node name="Shield Walls" type="Node2D"]
+position = Vector2( 299.183, 179.141 )
+scale = Vector2( 0.45893, 0.517088 )
+script = ExtResource( 8 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ShieldWall 1" type="Area2D" parent="." groups=[
+"shield",
+]]
+position = Vector2( -87.9179, -85.0134 )
+scale = Vector2( 2, 2 )
+collision_layer = 512
+collision_mask = 255
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="ShieldWall 1"]
+position = Vector2( 0, -1.52588e-05 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 11, 81, 63, 65 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall 1" groups=[
+"shield",
+]]
+position = Vector2( 0.365234, 0.108047 )
+polygon = PoolVector2Array( -18.9717, 33.8668, 12.6354, 31.8341, 15.8419, 18.8244, 19.9646, 11.5064, 30.5003, 7.44086, 31.4165, -24.6768, 18.1323, -22.6441, 6.68042, -18.172, -4.77145, -5.9754, -13.4749, 7.84743, -18.0556, 20.044 )
+
+[node name="ShieldWall 2" type="Area2D" parent="." groups=[
+"shield",
+]]
+position = Vector2( -87.9179, -85.0134 )
+scale = Vector2( 2, 2 )
+collision_layer = 512
+collision_mask = 255
+script = ExtResource( 5 )
+
+[node name="Sprite6" type="Sprite" parent="ShieldWall 2"]
+position = Vector2( 78.3974, -5.46139 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 11, 81, 63, 65 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall 2" groups=[
+"shield",
+]]
+position = Vector2( 78.627, -6.6846 )
+rotation = 1.5708
+polygon = PoolVector2Array( -18.9717, 33.8668, 13.2653, 33.3071, 16.7111, 19.961, 20.6303, 14.2291, 33.2335, 5.98376, 32.8269, -23.333, 18.1323, -22.6441, 6.68042, -18.172, -4.77145, -5.9754, -13.4749, 7.84743, -18.0556, 20.044 )
+
+[node name="ShieldWall 3" type="Area2D" parent="." groups=[
+"shield",
+]]
+position = Vector2( -87.9179, -85.0134 )
+scale = Vector2( 2, 2 )
+collision_layer = 512
+collision_mask = 255
+script = ExtResource( 6 )
+
+[node name="Sprite7" type="Sprite" parent="ShieldWall 3"]
+position = Vector2( 82.8764, 69.8036 )
+rotation = -3.14159
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 11, 81, 63, 65 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall 3" groups=[
+"shield",
+]]
+position = Vector2( 84.6427, 69.576 )
+rotation = 3.14159
+polygon = PoolVector2Array( -18.9717, 33.8668, 13.2072, 33.1405, 15.8419, 18.8244, 21.4525, 12.8128, 33.7418, 7.00069, 33.8206, -24.5901, 18.1323, -22.6441, 6.68042, -18.172, -4.77145, -5.9754, -13.4749, 7.84743, -18.0556, 20.044 )
+
+[node name="ShieldWall 4" type="Area2D" parent="." groups=[
+"shield",
+]]
+position = Vector2( -79.1823, -84.1519 )
+scale = Vector2( 2, 2 )
+collision_layer = 512
+collision_mask = 255
+script = ExtResource( 4 )
+
+[node name="Sprite4" type="Sprite" parent="ShieldWall 4"]
+position = Vector2( 2.84583, 73.8845 )
+rotation = -1.5708
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 11, 81, 63, 65 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall 4" groups=[
+"shield",
+]]
+position = Vector2( 1.85971, 74.7954 )
+rotation = -1.5708
+polygon = PoolVector2Array( -18.9717, 33.8668, 13.2072, 33.1405, 16.7427, 21.0325, 20.8346, 14.4808, 32.9532, 7.43793, 33.8206, -24.5901, 18.1323, -22.6441, 6.68042, -18.172, -4.77145, -5.9754, -13.4749, 7.84743, -18.0556, 20.044 )
+
+[node name="Space Station" type="Area2D" parent="." groups=[
+"station",
+]]
+collision_layer = 512
+collision_mask = 255
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Space Station"]
+position = Vector2( -3.81323, -16.4381 )
+scale = Vector2( 0.304706, 0.272148 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Space Station"]
+position = Vector2( 1.08954, 3.8678 )
+polygon = PoolVector2Array( -24.5806, -58.67, 16.3962, -58.67, 39.9719, -36.0928, 38.9045, 1.26041, 17.5504, 24.3105, -21.1178, 25.8472, -45.9348, 3.3093, -48.3551, -37.8158 )
+
+[connection signal="area_entered" from="ShieldWall 1" to="ShieldWall 1" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="ShieldWall 2" to="ShieldWall 2" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="ShieldWall 3" to="ShieldWall 3" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="ShieldWall 4" to="ShieldWall 4" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="Space Station" to="Space Station" method="_on_Space_Station_area_entered"]
